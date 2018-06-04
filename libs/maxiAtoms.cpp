@@ -13,7 +13,7 @@
 #include "sineTable.h"
 #ifdef __APPLE_CC__
 #include <Accelerate/Accelerate.h>
-#warning ofxMaxim: Please link against the accelerate framework.
+//#warning ofxMaxim: Please link against the accelerate framework.
 #endif
 
 //#include "tinyxml.h"
@@ -105,7 +105,7 @@ void maxiAccelerator::addAtom(flArr &atom, unsigned int offset) {
 void maxiAccelerator::fillNextBuffer(float *buffer, unsigned int bufferLength) {
 	queuedAtomList::iterator it = atomQueue.begin();
 	while(it != atomQueue.end()) {
-		int atomStart = (*it).startTime + (*it).pos;
+		long atomStart = (*it).startTime + (*it).pos;
 		//include in this frame?
 		if (atomStart >= sampleIdx && atomStart < sampleIdx + bufferLength) {
 			//copy into buffer

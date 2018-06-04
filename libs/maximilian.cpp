@@ -1135,7 +1135,7 @@ void maxiSample::autoTrim(float alpha, float threshold, bool trimStart, bool tri
         }
     }
     
-    int endMarker = length-1;
+    long endMarker = length - 1;
     if(trimEnd) {
         maxiLagExp<float> endLag(alpha, 0);
         while(endMarker > 0) {
@@ -1149,7 +1149,7 @@ void maxiSample::autoTrim(float alpha, float threshold, bool trimStart, bool tri
     
     cout << "Autotrim: start: " << startMarker << ", end: " << endMarker << endl;
     
-    int newLength = endMarker - startMarker;
+    long newLength = endMarker - startMarker;
     if (newLength > 0) {
         short *newData = (short*) malloc(sizeof(short) * newLength);
         for(int i=0; i < newLength; i++) {
@@ -1162,7 +1162,7 @@ void maxiSample::autoTrim(float alpha, float threshold, bool trimStart, bool tri
         position=0;
         recordPosition=0;
         //envelope the start
-        int fadeSize=min((long)100, length);
+        long fadeSize = min((long)100, length);
         for(int i=0; i < fadeSize; i++) {
             float factor = i / (float) fadeSize;
             temp[i] = round(temp[i] * factor);
